@@ -26,7 +26,7 @@ Sentry.init({
   debug: true,
   sendDefaultPii: true,
 });
-
+//prueba//
 const Stack = createNativeStackNavigator();
 const Tab = createBottomTabNavigator();
 
