@@ -24,11 +24,6 @@ jobs:
       - name: Instalar EAS CLI
         run: npm install -g eas-cli
 
-      - name: Configurar proyecto EAS
-        run: eas build:configure
-        env:
-          EAS_ACCESS_TOKEN: ${{ secrets.EAS_TOKEN }}
-
       - name: Autenticarse con token
         run: eas whoami
         env:
