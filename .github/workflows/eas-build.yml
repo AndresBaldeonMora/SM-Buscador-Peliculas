@@ -1,0 +1,40 @@
+name: Expo EAS Build Android
+
+on:
+  push:
+    branches:
+      - feature/deploy-monitoring
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout del proyecto
+        uses: actions/checkout@v3
+
+      - name: Configurar Node.js
+        uses: actions/setup-node@v3
+        with:
+          node-version: 18
+
+      - name: Instalar dependencias
+        run: npm install
+
+      - name: Instalar EAS CLI
+        run: npm install -g eas-cli
+
+      - name: Configurar proyecto EAS
+        run: eas build:configure --non-interactive
+        env:
+          EAS_ACCESS_TOKEN: ${{ secrets.EAS_TOKEN }}
+
+      - name: Autenticarse con token
+        run: eas whoami
+        env:
+          EAS_ACCESS_TOKEN: ${{ secrets.EAS_TOKEN }}
+
+      - name: Compilar app Android
+        run: eas build --platform android --non-interactive --profile preview
+        env:
+          EAS_ACCESS_TOKEN: ${{ secrets.EAS_TOKEN }}
