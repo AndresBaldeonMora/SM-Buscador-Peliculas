@@ -29,6 +29,12 @@
     "plugins": [
       "expo-web-browser",
       "expo-font"
-    ]
+    ],
+    "extra": {
+      "eas": {
+        "projectId": "39a991f6-c9fb-490e-9792-0d7f4d66cfe2"
+      }
+    },
+    "owner": "andresbaldeon"
   }
 }
