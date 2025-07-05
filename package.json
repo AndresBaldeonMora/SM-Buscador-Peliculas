@@ -39,7 +39,8 @@
     "react-native-video": "^6.16.0",
     "react-native-web": "^0.20.0",
     "react-native-webview": "13.13.5",
-    "react-native-youtube-iframe": "^2.4.1"
+    "react-native-youtube-iframe": "^2.4.1",
+    "@sentry/react-native": "~6.14.0"
   },
   "devDependencies": {
     "@babel/core": "^7.20.0"

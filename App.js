@@ -1,3 +1,5 @@
+import * as Sentry from "@sentry/react-native";
+import { useEffect } from "react";
 import {
   NavigationContainer,
   DefaultTheme,
@@ -16,6 +18,14 @@ import FavoritesScreen from "./src/screens/FavoritesScreen";
 import MovieDetailScreen from "./src/screens/MovieDetailScreen";
 import AccountScreen from "./src/screens/AccountScreen";
 import { FavoritesProvider } from "./src/context/FavoritesContext";
+
+// ✅ Inicializar Sentry
+Sentry.init({
+  dsn: "https://94be1111f7a411d7a5dba887324e9134@o4509573836111872.ingest.sentry.io/4509614814724096",
+  enableInExpoDevelopment: true,
+  debug: true,
+  sendDefaultPii: true,
+});
 
 const Stack = createNativeStackNavigator();
 const Tab = createBottomTabNavigator();
@@ -57,8 +67,14 @@ function MainTabs() {
   );
 }
 
-export default function App() {
+function App() {
   const colorScheme = useColorScheme();
+
+  // ✅ Error de prueba al iniciar
+  useEffect(() => {
+    Sentry.captureMessage("Mensaje de prueba desde la app");
+    // throw new Error('Error de prueba desde App');
+  }, []);
 
   return (
     <FavoritesProvider>
@@ -93,3 +109,5 @@ export default function App() {
     </FavoritesProvider>
   );
 }
+
+export default Sentry.wrap(App);
