@@ -27,4 +27,4 @@ jobs:
       - name: Compilar app Android
         run: eas build --platform android --non-interactive --profile preview
         env:
-          EAS_ACCESS_TOKEN: ${{ secrets.EAS_TOKEN }}
+          EXPO_TOKEN: ${{ secrets.EXPO_TOKEN }}
