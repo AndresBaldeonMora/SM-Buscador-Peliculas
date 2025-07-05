@@ -1,28 +1,25 @@
 import React, { useEffect } from "react";
 import { View, Text, StyleSheet } from "react-native";
 import { SafeAreaView } from "react-native-safe-area-context";
-import * as Animatable from "react-native-animatable"; // 👈 Paso nuevo
-
+import * as Animatable from "react-native-animatable";
 export default function WelcomeScreen({ navigation }) {
   useEffect(() => {
     const timer = setTimeout(() => {
       navigation.replace("Preferences");
-    }, 3000); // 👈 Dale más tiempo para que se aprecie la animación
+    }, 3000);
     return () => clearTimeout(timer);
   }, []);
 
   return (
     <SafeAreaView style={styles.safeArea}>
       <View style={styles.container}>
-        {/* 👇 Animación del logo */}
         <Animatable.Image
-          animation="bounceInDown" // 👈 Efecto de entrada con rebote
+          animation="bounceInDown"
           duration={1500}
-          source={require("../images/logo.png")} // ⬅️ Coloca tu logo aquí
+          source={require("../images/logo.png")}
           style={styles.logo}
         />
 
-        {/* 👇 Título y subtítulo animados */}
         <Animatable.Text animation="fadeInUp" delay={800} style={styles.title}>
           Bienvenido a MovieFinder
         </Animatable.Text>
