@@ -22,8 +22,12 @@ jobs:
       - name: Instalar EAS CLI
         run: npm install -g eas-cli
 
-      - name: Autenticarse con Expo
-        run: eas login --username ${{ secrets.EXPO_USERNAME }} --password ${{ secrets.EXPO_PASSWORD }}
+      - name: Autenticarse con token
+        run: eas build:configure && eas whoami
+        env:
+          EXPO_TOKEN: ${{ secrets.EXPO_TOKEN }}
 
       - name: Compilar app Android
         run: eas build --platform android --profile production --non-interactive
+        env:
+          EXPO_TOKEN: ${{ secrets.EXPO_TOKEN }}
