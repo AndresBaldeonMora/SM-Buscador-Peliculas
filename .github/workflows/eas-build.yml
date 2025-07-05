@@ -5,6 +5,7 @@ on:
     branches:
       - main
       - feature/deploy-monitoring
+  workflow_dispatch:
 
 jobs:
   build:
@@ -21,8 +22,8 @@ jobs:
       - name: Instalar EAS CLI
         run: npm install -g eas-cli
 
-      - name: Autenticación en Expo
-        run: eas login --token ${{ secrets.EXPO_TOKEN }}
+      - name: Autenticarse con Expo
+        run: eas login --username ${{ secrets.EXPO_USERNAME }} --password ${{ secrets.EXPO_PASSWORD }}
 
-      - name: Ejecutar build Android
+      - name: Compilar app Android
         run: eas build --platform android --profile production --non-interactive
